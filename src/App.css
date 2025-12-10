@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
+:root {
+  --cbg: #453B61;
+  --cbgl: #554977;
+  --cmain: #F24B4B;
+  --ctext: #FEE1C0;
+
+  --csblue: #1385F0;
+  --csyellow: #FFBB31;
+  --cspink: #ED0F7E;
+
+  --br: clamp(4px, 0.7vw, 12px);
+
+  font-size: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: var(--cbg);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#app {
+  width: 100vw; height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+footer {
+  height: 3vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: u001;
+  font-weight: normal;
+  font-style: normal;
+  src: url(../public/fonts/u001/u001-reg.ttf);
+}
+@font-face {
+  font-family: u001;
+  font-weight: bold;
+  font-style: normal;
+  src: url(../public/fonts/u001/u001-bol.ttf);
+}
+@font-face {
+  font-family: u001;
+  font-weight: normal;
+  font-style: italic;
+  src: url(../public/fonts/u001/u001-ita.ttf);
+}
+@font-face {
+  font-family: u001;
+  font-weight: bold;
+  font-style: italic;
+  src: url(../public/fonts/u001/u001-bolita.ttf);
 }
