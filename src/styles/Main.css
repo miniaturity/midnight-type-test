@@ -104,7 +104,7 @@ header {
 
 .separator {
   width: clamp(2px, 0.2vw, 4px); height: 40%;
-  background-color: var(--csyellow);
+  background-color: var(--ctext);
   border-radius: var(--br);
   margin: 0.5vw;
   user-select: none;

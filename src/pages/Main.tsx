@@ -1,7 +1,7 @@
 import { Keyboard } from '../components/Keyboard';
 import { TypeTest } from '../components/TypeTest';
 import { RTUseTestType } from '../util/useTypeTest';
-import { RTUseWords } from '../util/handleWords';
+import { RTUseWords } from '../util/useWords';
 import '../styles/Main.css'
 
 const NUM_WORDS = [
@@ -40,8 +40,8 @@ const Main: React.FC<{ s: RTUseTestType, w: RTUseWords }> = ({ s, w }) => {
         </div>
       </header>
       <div id="typing-test">
-        <TypeTest {...s}/>
-        <Keyboard s={s} w={w}/>
+        <TypeTest s={s} w={w}/>
+        <Keyboard s={s}/>
       </div>
     </main>
   )

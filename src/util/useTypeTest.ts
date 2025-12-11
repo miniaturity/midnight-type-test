@@ -6,6 +6,7 @@ type DeepPartial<T> = {
 };
 
 interface TestData {
+  words: string[],
   text: string,
   userText: string,
   status: Status,
@@ -37,6 +38,7 @@ interface TypeTestData {
 }
 
 const defaultTestData: TestData = {
+  words: [],
   text: "",
   userText: "",
   status: "idle",
@@ -125,6 +127,17 @@ export function useTypeTest() {
       ))
     }, []);
 
+    const deleteLetter = useCallback(() => {
+      setT(prev => (
+        { ...prev,
+          test: {
+            ...prev.test,
+            userText: prev.test.userText.slice(0, -1)
+          }
+        }
+      ))
+    }, []);
+
     const handleKeyboardPress = useCallback((char: string) => {
       if (char === "del") {
         setT(prev => ({ ...prev, test: { ...prev.test, userText: prev.test.userText.slice(0, -1)}}));
@@ -132,7 +145,7 @@ export function useTypeTest() {
         // TODO
       } else if (char === "caps") {
         toggleCaps();
-      }else {
+      } else {
         appendLetter(char);
       }
     }, [appendLetter, toggleCaps]);
@@ -145,5 +158,8 @@ export function useTypeTest() {
 
       handleKeyboardPress,
       toggleCaps,
+
+      appendLetter,
+      deleteLetter
     }
 }

@@ -25,7 +25,7 @@
 }
 
 .keyboard__key.activated {
-  transition: none !important;
+  transition: all 0.03s ease-out !important;
   color: var(--csyellow);
   background: var(--cmain);
   scale: 0.9;

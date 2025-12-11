@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { RTUseTestType } from "../util/useTypeTest";
 import "../styles/Keyboard.css";
-import { RTUseWords } from "../util/handleWords";
 
 const Keys: string[][] = [
   ["1","2","3","4","5","6","7","8","9","0","del"],
@@ -19,7 +18,7 @@ const KeysUpper: string[][] = [
   ["space"]
 ];
 
-export const Keyboard: React.FC<{s: RTUseTestType, w: RTUseWords}> = ({ s, w }) => {
+export const Keyboard: React.FC<{s: RTUseTestType }> = ({ s }) => {
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
   useEffect(() => {
@@ -27,10 +26,14 @@ export const Keyboard: React.FC<{s: RTUseTestType, w: RTUseWords}> = ({ s, w }) 
       const key = normalizeKey(e.key);
       setActiveKey(key);
 
-      if (e.key === "CapsLock") {
+      if (e.key === "Backspace") {
+        s.deleteLetter();
+      } else if (e.key === "CapsLock") {
         s.toggleCaps();
       } else if (e.key === "Shift") {
         s.dispatchUpdate({ user: { case: "upper" } });
+      } else if (/^[a-zA-Z0-9., ]$/.test(e.key)){
+        s.appendLetter(e.key);
       }
     };
 
@@ -63,6 +66,7 @@ export const Keyboard: React.FC<{s: RTUseTestType, w: RTUseWords}> = ({ s, w }) 
               isActive={activeKey === keyVal}
               state={s.t.user.case}
               onClick={() => {
+                s.handleKeyboardPress(s.t.user.case === "lower" ? keyVal : KeysUpper[rowIndex][colIndex])
                 setActiveKey(keyVal);
                 setTimeout(() => setActiveKey(null), 200);
               }}

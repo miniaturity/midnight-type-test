@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router';
 import './App.css';
 import Main from './pages/Main';
 import { useTypeTest } from './util/useTypeTest';
-import useWords from './util/handleWords';
+import useWords from './util/useWords';
 
 function App() {
   const s = useTypeTest();

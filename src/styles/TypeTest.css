@@ -1,3 +1,9 @@
 #test {
-  height: 60%; width: 100%;
+  height: 50%; width: 100%;
+  max-width: 60vw;
+  user-select: none;
+  justify-self: center;
+
+  font-size: 4vw;
+  color: var(--cbgd);
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export type RTUseWords = ReturnType<typeof useWords>
 
@@ -28,11 +28,26 @@ function useWords() {
     }
 
     fetchWords();
-  }, [])
+  }, []);
+
+  const getRandomWords = useCallback((amt: number): string[] => {
+    if (!words || words.length === 0) return [];
+
+    const rw = new Array<string>(amt);
+
+    for (let i = 0; i < amt; i++) {
+      const index = Math.floor(Math.random() * words.length);
+      rw[i] = words[index];
+    }
+
+    return rw;
+  }, [words]);
+
 
   return {
     words,
-    loading
+    loading,
+    getRandomWords
   };
 }
 
