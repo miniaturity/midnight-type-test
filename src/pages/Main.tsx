@@ -1,5 +1,7 @@
-import { useEffect } from 'react';
-import { RTUseTestType } from '../hooks/useTypeTest';
+import { Keyboard } from '../components/Keyboard';
+import { TypeTest } from '../components/TypeTest';
+import { RTUseTestType } from '../util/useTypeTest';
+import { RTUseWords } from '../util/handleWords';
 import '../styles/Main.css'
 
 const NUM_WORDS = [
@@ -11,12 +13,11 @@ const NUM_WORDS = [
 ]
 
 
-const Main: React.FC<{ s: RTUseTestType }> = (s) => {
+const Main: React.FC<{ s: RTUseTestType, w: RTUseWords }> = ({ s, w }) => {
   const {
     t,
     dispatchUpdate,
-    updateWpm
-  } = s.s;
+  } = s;
   
   return (
     <main>
@@ -39,7 +40,8 @@ const Main: React.FC<{ s: RTUseTestType }> = (s) => {
         </div>
       </header>
       <div id="typing-test">
-
+        <TypeTest {...s}/>
+        <Keyboard s={s} w={w}/>
       </div>
     </main>
   )

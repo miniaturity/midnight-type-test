@@ -27,6 +27,8 @@ interface TypeTestData {
     wordsPerTest: number;
     midnightMode: boolean;
 
+    case: "lower" | "upper";
+
     event: {
       nextEvent: number; // completedTests threshold
       onEvent: () => void;
@@ -54,6 +56,8 @@ const defaultData: TypeTestData = {
 
     wordsPerTest: 10,
     midnightMode: true,
+
+    case: "lower",
 
     event: {
       nextEvent: -1,
@@ -111,10 +115,35 @@ export function useTypeTest() {
       })
     }, []);
 
+    const toggleCaps = useCallback(() => {
+      setT(prev => ({ ...prev, user: { ...prev.user, case: prev.user.case === "lower" ? "upper" : "lower" }}))
+    }, []);
+
+    const appendLetter = useCallback((char: string) => {
+      setT(prev => (
+        { ...prev, test: { ...prev.test, userText: prev.test.userText + char }}
+      ))
+    }, []);
+
+    const handleKeyboardPress = useCallback((char: string) => {
+      if (char === "del") {
+        setT(prev => ({ ...prev, test: { ...prev.test, userText: prev.test.userText.slice(0, -1)}}));
+      } else if (char === "enter") {
+        // TODO
+      } else if (char === "caps") {
+        toggleCaps();
+      }else {
+        appendLetter(char);
+      }
+    }, [appendLetter, toggleCaps]);
+
     return {
       t,
 
       dispatchUpdate,
       updateWpm,
+
+      handleKeyboardPress,
+      toggleCaps,
     }
 }
